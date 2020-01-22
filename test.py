@@ -1,5 +1,5 @@
 
-from todolist import addtask,scheduled_task,display_list
+from todolist import addtask,scheduled_task,display_list,delete_task
 
 def test_add_task():
     dict = {}
@@ -56,10 +56,20 @@ def test_get_scheduled_list():
     assert scheduled_task(dict) == "lala land\n"
 
 
-# def test_get_scheduled_list_blank():
-#     dict = {}
-#     assert scheduled_task(dict) == "no tasks today"
+def test_get_scheduled_list_blank():
+    dict = {}
+    assert scheduled_task(dict) == "no tasks today"
 
 
-# def test_delete_message():
-    
+def test_delete_message():
+    dict = {1: {'date': '2020-01-15', 'message': 'pay rent'},
+            2: {'date': '2020-01-16','message': 'pay tax'},
+            3: {'date': '2020-01-17','message': 'pay water'},
+            4: {'date': '2020-01-18','message': 'movie'},
+            5: {'date': '2020-01-15','message': 'homework'},
+            6: {'date': '2020-01-22','message': 'lala land'}}
+    assert delete_task(2 ,dict) == {1: {'date': '2020-01-15', 'message': 'pay rent'},
+                                    3: {'date': '2020-01-17','message': 'pay water'},
+                                    4: {'date': '2020-01-18','message': 'movie'},
+                                    5: {'date': '2020-01-15','message': 'homework'},
+                                    6: {'date': '2020-01-22','message': 'lala land'}}
