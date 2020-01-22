@@ -1,39 +1,46 @@
 from sys import argv
 from datetime import date 
-
-
-dict = {}
-
-def addtask(dict,date,value):
-    if date in dict: 
-        dict[date].append(value)
-    else:
-        dict[date] = [value]
-    return (dict)
+dict =  {}
+def addtask(dates,msg,dict):
+        key = 1
+        if key in dict:
+                key += 1
+                dict[key] = {"date":'',"message":''}
+                dict[key]["date"] = dates
+                dict[key]["message"] = msg
+        else:
+                dict[key] = {"date":'',"message":''}
+                dict[key]["date"] = dates
+                dict[key]["message"] = msg
+        return (dict)
 
 def display_list(dict):
     list = ""
-    for x in dict:
-        list += ("\n")
-        list += str(x)
-        list += ("\n")
-        for y in dict[x]:
-            list += str(y)
+    if len(dict) != 0:
+        for key in dict:
             list += ("\n")
+            list += str(key)
+            list += (".")
+            #for date in dict[key]:
+            list += str(dict[key]["date"])
+            list += ("\t")
+            #for message in dict[key]:
+            list += str(dict[key]["message"])
+            list += ("\n") 
+    else:
+        return("no tasks added")
     return(list)
 
 def scheduled_task(dict):
     if len(dict) != 0:
-        dat = dict[str(date.today())]
         scheduled_task = ""
-        for y in dat:
-            scheduled_task += str(y)
-            scheduled_task += ("\n")
+        for key in dict:
+                if dict[key]["date"] == str(date.today()):
+                        msg = dict[key]["message"]
+                        #for y in msg:
+                        scheduled_task += msg
+                        scheduled_task += ("\n")
         return(scheduled_task)
     else:
         return("no tasks today")
 
-
-
-    
-#print(scheduled_task(dict))
