@@ -4,11 +4,13 @@ from json import load, dump
 from argparse import ArgumentParser
 import argparse
 
-#json_file_path = "dict.json"
-#with open(json_file_path,'r') as json_file:
-#        dictload = load(json_file)
-dict = {} #dictload.read().strip()
-#dictdump = dump(dict ,open("dict.json", 'w'))
+
+
+f = open('file.dict','r')
+s = f.read()
+dict = eval(s)
+#print(dict)
+
 def addtask(dates,msg,dict):
         key = 1
         if key in dict:
@@ -20,10 +22,13 @@ def addtask(dates,msg,dict):
                 dict[key] = {"date":'',"message":''}
                 dict[key]["date"] = dates
                 dict[key]["message"] = msg
+        f = open('file.dict','w')
+        s = str(dict)
+        f.write(s)
         return (dict)
 
 def display_list(dict):
-    list = ""
+    list = "" 
     if len(dict) != 0:
         for key in dict:
             list += ("\n")
@@ -52,16 +57,10 @@ def scheduled_task(dict):
 def delete_task(number,dict):
         if number in dict:
                 del dict[number]
-        # for key in dict:
-        #         if key > number:
-        #                 new_key = key - 1
-        #                 dict[new_key] = dict[key]
-        # del dict[key]
         return(dict)
 
 def get_args():
         parser = ArgumentParser(description='the todolist arguments')
-        group = parser.add_mutually_exclusive_group()
         parser.add_argument('functions',help='different functions')
         
         parser.add_argument('-d','--digit',help ='''The date on which you want the message to be
@@ -71,14 +70,13 @@ shown/the number of the message you want to delete''')
         args = parser.parse_args()
 
         if args.functions == "add":
-                return(addtask(args.digit,args.message,dict))
+                addtask(args.digit,args.message,dict)
         elif args.functions == "list":
-                return(display_list(dict))
+                print(display_list(dict))
         elif args.functions == "schedule":        
-                return(scheduled_task(dict))
+                print(scheduled_task(dict))
         elif args.functions == "complete":
-                return(delete_task(args.digit,dict))
-
+                delete_task(args.digit,dict)
 
 if __name__ == '__main__':
         get_args()

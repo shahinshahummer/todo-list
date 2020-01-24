@@ -58,7 +58,7 @@ def test_get_scheduled_list():
                                                                     'message': 'movie'},
                                                                 5: {'date': '2020-01-15',
                                                                      'message': 'homework'},
-                                                                 6: {'date': '2020-01-23',
+                                                                 6: {'date': '2020-01-24',
                                                                       'message': 'lala land'}}
     assert scheduled_task(dict) == "lala land\n"
 
