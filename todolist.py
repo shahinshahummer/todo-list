@@ -1,6 +1,4 @@
-from sys import argv
 from datetime import date 
-from json import load, dump
 from argparse import ArgumentParser
 import argparse
 
@@ -9,7 +7,7 @@ import argparse
 f = open('file.dict','r')
 s = f.read()
 dict = eval(s)
-#print(dict)
+
 
 def addtask(dates,msg,dict):
         key = 1
@@ -18,6 +16,9 @@ def addtask(dates,msg,dict):
                 dict[key] = {"date":'',"message":''}
                 dict[key]["date"] = dates
                 dict[key]["message"] = msg
+                f = open('file.dict','w')
+                s = str(dict)
+                f.write(s)
         else:
                 dict[key] = {"date":'',"message":''}
                 dict[key]["date"] = dates
@@ -55,8 +56,12 @@ def scheduled_task(dict):
         return("no tasks today")
 
 def delete_task(number,dict):
+        number = int(number)
         if number in dict:
                 del dict[number]
+                f = open('file.dict','w')
+                s = str(dict)
+                f.write(s)
         return(dict)
 
 def get_args():
@@ -70,13 +75,13 @@ shown/the number of the message you want to delete''')
         args = parser.parse_args()
 
         if args.functions == "add":
-                addtask(args.digit,args.message,dict)
+                return(addtask(args.digit,args.message,dict))
         elif args.functions == "list":
                 print(display_list(dict))
         elif args.functions == "schedule":        
                 print(scheduled_task(dict))
         elif args.functions == "complete":
-                delete_task(args.digit,dict)
+                return(delete_task(args.digit,dict))
 
 if __name__ == '__main__':
         get_args()
