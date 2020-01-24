@@ -6,6 +6,7 @@ def test_add_task():
     todo ={1: {'date': '2020-01-15', 'message': 'pay rent'}}
     assert addtask('2020-01-15', "pay rent",dict) == todo
 
+    
 def test_add_task_2nd_day():
     dict = {1: {'date': '2020-01-15', 'message': 'pay rent'}}
     todo = {1: {'date': '2020-01-15', 'message': 'pay rent'}, 2 : {'date': '2020-01-16',
@@ -13,10 +14,12 @@ def test_add_task_2nd_day():
     assert addtask('2020-01-16', "pay tax",dict) == todo
  
 
+    
 def test_display_list_blank():
     dict = {}
     assert display_list(dict) == "no tasks added"
 
+    
 def test_display_list():
     dict = {1: {'date': '2020-01-15', 'message': 'pay rent'},2: {'date': '2020-01-16',
                                                                   'message': 'pay tax'},
@@ -41,7 +44,11 @@ def test_display_list():
 
 6.2020-01-20	lala land
 """
-#when you test the scheduled list, you have to give today's date to the dict and add message to it and change it in assert    
+
+
+
+    
+#when you test the scheduled list, you have to give today's date to the dict and add message to it and change it in assert also    
 def test_get_scheduled_list():
     dict = {1: {'date': '2020-01-15', 'message': 'pay rent'},2: {'date': '2020-01-16',
                                                                   'message': 'pay tax'},
@@ -51,16 +58,18 @@ def test_get_scheduled_list():
                                                                     'message': 'movie'},
                                                                 5: {'date': '2020-01-15',
                                                                      'message': 'homework'},
-                                                                 6: {'date': '2020-01-22',
+                                                                 6: {'date': '2020-01-23',
                                                                       'message': 'lala land'}}
     assert scheduled_task(dict) == "lala land\n"
 
 
+    
 def test_get_scheduled_list_blank():
     dict = {}
     assert scheduled_task(dict) == "no tasks today"
 
 
+    
 def test_delete_message():
     dict = {1: {'date': '2020-01-15', 'message': 'pay rent'},
             2: {'date': '2020-01-16','message': 'pay tax'},

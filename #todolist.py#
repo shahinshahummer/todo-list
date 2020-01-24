@@ -4,9 +4,9 @@ from json import load, dump
 from argparse import ArgumentParser
 import argparse
 
-#json_file_path = "dict.json"
-#with open(json_file_path,'r') as json_file:
-#        dictload = load(json_file)
+json_file_path = "dict.json"
+with open(json_file_path,'r') as json_file:
+       dictload = load(json_file)
 dict = {} #dictload.read().strip()
 #dictdump = dump(dict ,open("dict.json", 'w'))
 def addtask(dates,msg,dict):
