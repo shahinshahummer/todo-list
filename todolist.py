@@ -18,6 +18,9 @@ def addtask(dates,msg,dict):
                 dict[key] = {"date":'',"message":''}
                 dict[key]["date"] = dates
                 dict[key]["message"] = msg
+                f = open('file.dict','w')
+                s = str(dict)
+                f.write(s)
         else:
                 dict[key] = {"date":'',"message":''}
                 dict[key]["date"] = dates
@@ -57,6 +60,9 @@ def scheduled_task(dict):
 def delete_task(number,dict):
         if number in dict:
                 del dict[number]
+                f = open('file.dict','w')
+                s = str(dict)
+                f.write(s)
         return(dict)
 
 def get_args():
@@ -76,7 +82,7 @@ shown/the number of the message you want to delete''')
         elif args.functions == "schedule":        
                 print(scheduled_task(dict))
         elif args.functions == "complete":
-                delete_task(args.digit,dict)
+                return(delete_task(args.digit,dict))
 
 if __name__ == '__main__':
         get_args()
